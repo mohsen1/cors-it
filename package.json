@@ -1,0 +1,18 @@
+{
+  "name": "cors-it",
+  "version": "1.0.0",
+  "description": "Make requests CORSable!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "CORS"
+  ],
+  "author": "Mohsen Azimi <mohsen@mohsenweb.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.10.4",
+    "request": "^2.48.0"
+  }
+}
