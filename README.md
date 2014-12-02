@@ -18,28 +18,30 @@ to the response.
 After cloning this repo, run
 
 ```
-npm install
+$ cd cors-it
+$ npm install
 ```
 to resolve the dependencies. (See
-[How to install npm])http://blog.npmjs.org/post/85484771375/how-to-install-npm) if you are new
+[How to install npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm) if you are new
 to Node and npm.)
 
-Set the `PORT` environment variable to an available port (for example, `9009`; the default is 3000), and run cors-it with
+Set the `PORT` environment variable to an available port (for example, 9009; the default is 3000), and run cors-it with
 
 ```
-PORT=9009 node index.js
+$ PORT=9009 node index.js
 ```
 # Using cors-it
 
 Pass a URL as the `url` query parameter
 
-`http://yourhost:9009/?url=http://petstore.swagger.wordnik.com/api/api-docs`
+`http://localhost:9009/?url=http://petstore.swagger.wordnik.com/api/api-docs`
 
 and cors-it will return that resource and its headers and add CORS headers.
 
 You can test your cors-it proxy with [curl(1)](http://curl.haxx.se/docs/manpage.html):
 
-```curl -D - 'http://localhost:9009/?url=http://petstore.swagger.wordnik.com/api/api-docs'
+```
+curl -D - 'http://localhost:9009/?url=http://petstore.swagger.wordnik.com/api/api-docs'
 HTTP/1.1 200 OK
 X-Powered-By: Express
 access-control-allow-origin: *
