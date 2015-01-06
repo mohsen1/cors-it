@@ -59,7 +59,7 @@ connection: keep-alive
 
 If you are using [swagger-editor](https://github.com/swagger-api/swagger-editor),
 you can configure the editor to use your cors-it proxy
-in [app/scripts/enums/defaults.js](https://github.com/swagger-api/swagger-editor/blob/master/app/scripts/enums/defaults.js#L113-L118) ;
+in [app/config/defaults.js](https://github.com/swagger-api/swagger-editor/blob/master/app/config/defaults.json#L30) ;
 just change the value of importProxyUrl to your host/port, such as
 
 ```
