@@ -30,6 +30,18 @@ Set the `PORT` environment variable to an available port (for example, 9009; the
 ```
 $ PORT=9009 node index.js
 ```
+
+### Build using Docker
+
+To build cors-it using a docker container:
+
+```
+docker build -t cors-it .
+docker run -p 8081:3000 cors-it
+```
+
+This will start cors-it at `http://localhost:8081`.
+
 # Using cors-it
 
 Pass a URL as the `url` query parameter
