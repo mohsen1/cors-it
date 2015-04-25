@@ -9,10 +9,17 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
+
   if (req.query.url) {
     request.get(req.query.url)
     .on('error', console.log)
+    .on('response', function (response) {
+
+      // delete 'access-control-allow-origin' header to make sure response doesn't have CORS limits
+      delete response.headers['access-control-allow-origin'];
+    })
     .pipe(res);
+
   } else {
     res.send('please specify url query param');
   }
