@@ -1,6 +1,6 @@
 {
   "name": "cors-it",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Make requests CORSable!",
   "main": "index.js",
   "scripts": {
