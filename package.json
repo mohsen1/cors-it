@@ -12,6 +12,7 @@
   "author": "Mohsen Azimi <mohsen@mohsenweb.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.10.4",
     "request": "^2.48.0"
   }

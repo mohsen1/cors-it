@@ -1,28 +1,49 @@
 var app = require('express')();
+var bodyParser = require('body-parser');
 var request = require('request');
 var port = process.env.PORT || 3000;
 
+app.use(bodyParser.json());
+
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 
-app.get('/', function(req, res, next) {
+app.options('*', function (req, res) {
+	res.send();
+});
 
-  if (req.query.url) {
-    request.get(req.query.url)
-    .on('error', console.log)
-    .on('response', function (response) {
-
-      // delete 'access-control-allow-origin' header to make sure response doesn't have CORS limits
-      delete response.headers['access-control-allow-origin'];
-    })
-    .pipe(res);
-
-  } else {
-    res.send('please specify url query param');
-  }
+app.use(function (req, res, next) {
+	if (req.query.url) {
+		var options = {
+			url: req.query.url,
+			method: req.method,
+			headers: req.headers,
+			qs: req.query
+		};
+		if (['PUT', 'POST', 'PATCH'].indexOf(req.method) > -1) {
+			options.body = JSON.stringify(req.body);
+		}
+		delete options.qs.url;
+		delete options.headers.host;
+		delete options.headers.origin;
+		request(options)
+			.on('error', console.log)
+			.on('response', function (response) {
+				console.log('----------------');
+				console.log('HEADERS');
+				console.log('----------------');
+				console.log(response.headers);
+				console.log('----------------');
+				console.log('STATUS CODE: ', response.statusCode);
+				console.log('----------------');
+				console.log('STATUS MESSAGE', response.statusMessage);
+				console.log('----------------');
+			})
+			.pipe(res);
+	}
 });
 
 app.listen(port, console.log);
