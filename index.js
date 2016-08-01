@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
 			qs: req.query
 		};
 		if (['PUT', 'POST', 'PATCH'].indexOf(req.method) > -1) {
-			options.body = JSON.stringify(req.body);
+			options.body = req.body;
 		}
 		delete options.qs.url;
 		delete options.headers.host;
