@@ -1,9 +1,19 @@
 var app = require('express')();
-var bodyParser = require('body-parser');
 var request = require('request');
 var port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+app.use(function (req, res, next) {
+	var data='';
+	req.setEncoding('utf8');
+	req.on('data', function(chunk) {
+		data += chunk;
+	});
+
+	req.on('end', function() {
+		req.body = data;
+		next();
+	});
+});
 
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
