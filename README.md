@@ -34,14 +34,14 @@ $ PORT=9009 node index.js
 
 Pass a URL as the `url` query parameter
 
-`http://localhost:9009/?url=http://petstore.swagger.wordnik.com/api/api-docs`
+`http://localhost:9009/?url=http://petstore.swagger.io/v2/swagger.json`
 
 and cors-it will return that resource and its headers and add CORS headers.
 
 You can test your cors-it proxy with [curl(1)](http://curl.haxx.se/docs/manpage.html):
 
 ```
-curl -D - 'http://localhost:9009/?url=http://petstore.swagger.wordnik.com/api/api-docs'
+curl -D - 'http://localhost:9009/?url=http://petstore.swagger.io/v2/swagger.json'
 HTTP/1.1 200 OK
 X-Powered-By: Express
 access-control-allow-origin: *
