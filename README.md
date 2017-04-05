@@ -31,6 +31,11 @@ Set the `PORT` environment variable to an available port (for example, 9009; the
 $ PORT=9009 node index.js
 ```
 
+Set the `URLPARAM` environment variable to change the `url` query parameter to another one (for example, `__target`; the default is `url`), and run cors-it with
+```
+$ URLPARAM=__target PORT=9009 node index.js
+```
+
 ### Build using Docker
 
 To build cors-it using a docker container:
