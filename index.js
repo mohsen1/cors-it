@@ -1,6 +1,7 @@
 var app = require('express')();
 var request = require('request');
 var port = process.env.PORT || 3000;
+var urlparam = process.env.URLPARAM || 'url';
 
 app.use(function (req, res, next) {
 	var data='';
@@ -26,9 +27,9 @@ app.options('*', function (req, res) {
 });
 
 app.use(function (req, res, next) {
-	if (req.query.url) {
+	if (req.query[urlparam]) {
 		var options = {
-			url: req.query.url,
+			url: req.query[urlparam],
 			method: req.method,
 			headers: req.headers,
 			qs: req.query
@@ -36,7 +37,7 @@ app.use(function (req, res, next) {
 		if (['PUT', 'POST', 'PATCH'].indexOf(req.method) > -1) {
 			options.body = req.body;
 		}
-		delete options.qs.url;
+		delete options.qs[urlparam];
 		delete options.headers.host;
 		delete options.headers.origin;
 		request(options)
