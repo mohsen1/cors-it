@@ -36,6 +36,40 @@ Set the `URLPARAM` environment variable to change the `url` query parameter to a
 $ URLPARAM=__target PORT=9009 node index.js
 ```
 
+# Running cors-it as a background service
+
+Install [Forever](https://www.npmjs.com/package/forever)
+```
+$ sudo npm install forever -g
+```
+
+To run cors-it as a background service using Forever:
+
+```
+$ PORT=9009 URLPARAM=__target forever start -o corsit.log -e corsit.err index.js
+warn:    --minUptime not set. Defaulting to: 1000ms
+warn:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+info:    Forever processing file: index.js
+```
+
+To check status of cors-it service:
+
+```
+$ forever list
+info:    Forever processes running
+data:        uid  command         script   forever pid  id logfile                         uptime      
+data:    [0] LwNf /usr/bin/nodejs index.js 4654    4663    /home/cors-it/.forever/LwNf.log 0:0:1:3.373 
+```
+
+To stop cors-it service:
+
+```
+$ forever stop 0
+info:    Forever stopped process:
+    uid  command         script   forever pid  id logfile                         uptime       
+[0] LwNf /usr/bin/nodejs index.js 4654    4663    /home/cors-it/.forever/LwNf.log 0:0:4:25.670
+```
+
 ### Build using Docker
 
 To build cors-it using a docker container:
