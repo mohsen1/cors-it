@@ -18,7 +18,7 @@ app.use(function (req, res, next) {
 
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
-	if(req.header()) {
+	if(req.header('Access-Control-Allow-Headers')) {
 	} else {
 		res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
 	}
